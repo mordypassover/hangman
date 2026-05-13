@@ -16,7 +16,10 @@ def hiden_word_in_list(word):
     return split_string_to_list(hiden_word)
 
 def reconnect_list_to_string(letter_list):
-    pass
+    reconnected=""
+    for i in letter_list:
+        reconnected+=i
+    return reconnected
 
 def show_game_status(cnt,hiden_split_word):
     print(f"{cnt} {reconnect_list_to_string(hiden_split_word)}")
@@ -30,4 +33,3 @@ def main():
     word=choose_game_word_from_list(word_list)
     hiden_letters_list=hiden_word_in_list(word)
     show_game_status(TRY_CNT, hiden_letters_list)
-
