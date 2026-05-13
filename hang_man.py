@@ -28,11 +28,19 @@ def get_letter(wrong_letters=[None]):
     user_letter= input("please enter a letter: ")
     return user_letter if user_letter.isalpha() and len(user_letter)==1 and user_letter not in wrong_letters  else (print("bad input"),get_letter())
 
+def update_hiden_list(letter,word,lst):
+    for index, l in enumerate(word) :
+        if letter == l:
+            lst[index]=letter
+    return
+
+
 def main():
     TRY_CNT=10
-    word_list=[]
+    word_list=['wert','qwertyh','wertgv']
     word=choose_game_word_from_list(word_list)
     hiden_letters_list=hiden_word_in_list(word)
     wrong_letters=[]
     show_game_status(TRY_CNT, hiden_letters_list)
-
+    while TRY_CNT > 0 and "_" not in word_list:
+        user_letter=get_letter(wrong_letters)
