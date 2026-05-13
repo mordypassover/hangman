@@ -21,15 +21,16 @@ def reconnect_list_to_string(letter_list):
         reconnected+=i
     return reconnected
 
-def show_game_status(cnt,hiden_split_word):
-    print(f"{cnt} {reconnect_list_to_string(hiden_split_word)}")
+def show_game_status(cnt,hiden_split_word,wrong_letters):
+    print(f"trys left: {cnt}, {reconnect_list_to_string(hiden_split_word)} , words used {wrong_letters} ")
 
 def get_letter(wrong_letters=[None]):
     user_letter= input("please enter a letter: ")
-    return user_letter if user_letter.isalpha() and len(user_letter)==1 and user_letter not in wrong_letters  else (print("bad input"),get_letter())
+    return user_letter if user_letter.isalpha() and len(user_letter)==1 and user_letter not in wrong_letters  else (print("bad input"))
+
 
 def check_gues(letter,word,):
-    return letter in word
+    return letter in list(word)
 
 def update_hiden_list(letter,word,lst):
     for index, l in enumerate(word) :
@@ -51,7 +52,12 @@ def main():
     word=choose_game_word_from_list(word_list)
     hiden_letters_list=hiden_word_in_list(word)
     wrong_letters=[]
-    show_game_status(TRY_CNT, hiden_letters_list)
-    while TRY_CNT > 0 and "_" not in word_list:
-        user_letter=get_letter(wrong_letters)
-    
+
+
+
+    while TRY_CNT > 0 and "_"  in hiden_letters_list:
+        show_game_status(TRY_CNT, hiden_letters_list,wrong_letters)
+        user_letter = get_letter(wrong_letters)
+
+        update_lists(user_letter,word,hiden_letters_list,wrong_letters)
+        TRY_CNT-=1
