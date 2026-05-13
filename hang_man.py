@@ -25,7 +25,8 @@ def show_game_status(cnt,hiden_split_word):
     print(f"{cnt} {reconnect_list_to_string(hiden_split_word)}")
 
 def get_letter():
-    pass
+    user_letter= input("please enter a letter: ")
+    return user_letter if user_letter.isalpha() and len(user_letter)==1 else (print("bad input"),get_letter())
 
 def main():
     TRY_CNT=10
