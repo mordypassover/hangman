@@ -35,7 +35,10 @@ def update_hiden_list(letter,word,lst):
     for index, l in enumerate(word) :
         if letter == l:
             lst[index]=letter
-    return
+    return lst
+
+def update_wrong_letters_list(letter,lst):
+    return lst.append(letter)
 
 
 def main():
