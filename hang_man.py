@@ -1,5 +1,9 @@
+import random
+
+
 def choose_game_word_from_list(lst):
-    pass
+    randum_index=random.randint(0,len(lst))
+    return lst(randum_index)
 
 def hied_word(word):
     pass
