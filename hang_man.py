@@ -28,6 +28,9 @@ def get_letter(wrong_letters=[None]):
     user_letter= input("please enter a letter: ")
     return user_letter if user_letter.isalpha() and len(user_letter)==1 and user_letter not in wrong_letters  else (print("bad input"),get_letter())
 
+def check_gues(letter,word,):
+    return letter in word
+
 def update_hiden_list(letter,word,lst):
     for index, l in enumerate(word) :
         if letter == l:
