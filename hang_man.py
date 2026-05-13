@@ -18,7 +18,7 @@ def reconnect_list_to_string(letter_list):
     pass
 
 def show_game_status(cnt,hiden_split_word):
-    pass
+    print(f"{cnt} {reconnect_list_to_string(hiden_split_word)}")
 
 def get_letter():
     pass
