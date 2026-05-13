@@ -2,8 +2,8 @@ import random
 
 
 def choose_game_word_from_list(lst):
-    randum_index=random.randint(0,len(lst))
-    return lst(randum_index)
+    randum_index=random.choice(lst)
+    return randum_index
 
 def hied_word(word):
     return "_"* len(word)
@@ -24,13 +24,15 @@ def reconnect_list_to_string(letter_list):
 def show_game_status(cnt,hiden_split_word):
     print(f"{cnt} {reconnect_list_to_string(hiden_split_word)}")
 
-def get_letter():
+def get_letter(wrong_letters=[None]):
     user_letter= input("please enter a letter: ")
-    return user_letter if user_letter.isalpha() and len(user_letter)==1 else (print("bad input"),get_letter())
+    return user_letter if user_letter.isalpha() and len(user_letter)==1 and user_letter not in wrong_letters  else (print("bad input"),get_letter())
 
 def main():
     TRY_CNT=10
     word_list=[]
     word=choose_game_word_from_list(word_list)
     hiden_letters_list=hiden_word_in_list(word)
+    wrong_letters=[]
     show_game_status(TRY_CNT, hiden_letters_list)
+
