@@ -40,6 +40,10 @@ def update_hiden_list(letter,word,lst):
 def update_wrong_letters_list(letter,lst):
     return lst.append(letter)
 
+def update_lists(letter,word,hiden_list,wrong_letters_list):
+    is_good_gues=check_gues(letter,word)
+    return update_hiden_list(letter,word,hiden_list) if is_good_gues else  update_wrong_letters_list(letter,wrong_letters_list)
+
 
 def main():
     TRY_CNT=10
@@ -50,3 +54,4 @@ def main():
     show_game_status(TRY_CNT, hiden_letters_list)
     while TRY_CNT > 0 and "_" not in word_list:
         user_letter=get_letter(wrong_letters)
+    
