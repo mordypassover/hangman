@@ -56,6 +56,9 @@ def update_lists(letter,word,hidden_list,wrong_letters_list):
         update_wrong_letters_list(letter,wrong_letters_list,hidden_list)
     return
 
+def try_cnt_suber(cnt,letter, word):
+    return cnt if check_gues(letter, word ) else cnt -1
+
 def game_end(hidden_words,word ,tris):
     if hidden_words == list(word):
         print(f"congratulations! word:{word} you won with {tris} left!")
@@ -66,7 +69,7 @@ def game_end(hidden_words,word ,tris):
 
 def main():
     TRY_CNT = 10
-    word_list = ['wert', 'qwertyh','wertgv']
+    word_list = ['wert', 'qwertyhwbvsdf','wertgv']
     word=choose_game_word_from_list(word_list)
     hidden_letters_list=hidden_word_in_list(word)
     wrong_letters=set()
@@ -78,7 +81,7 @@ def main():
         user_letter = get_letter(wrong_letters, hidden_letters_list)
 
         update_lists(user_letter,word,hidden_letters_list,wrong_letters)
-        TRY_CNT-=1
+        TRY_CNT=try_cnt_suber(TRY_CNT,user_letter,word)
 
     show_game_status(TRY_CNT, hidden_letters_list,wrong_letters)
     game_end(hidden_letters_list, word,TRY_CNT)
