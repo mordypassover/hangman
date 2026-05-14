@@ -2,8 +2,8 @@ import random
 
 
 def choose_game_word_from_list(lst):
-    randum_index=random.choice(lst)
-    return randum_index
+    randum_word=random.choice(lst)
+    return randum_word
 
 def hied_word(word):
     return "_"* len(word)
@@ -71,7 +71,7 @@ def game_end(hidden_words,word ,tris):
 
 def main():
     TRY_CNT = 10
-    word_list = ['wert', 'qwertyhwbvsdf','wertgv']
+    word_list = ['memory', 'ynet','ever']
     word=choose_game_word_from_list(word_list)
     hidden_letters_list=hidden_word_in_list(word)
     wrong_letters=set()
