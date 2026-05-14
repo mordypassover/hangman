@@ -22,17 +22,16 @@ def reconnect_list_to_string(letter_list):
     return reconnected
 
 def show_game_status(cnt,hiden_split_word,wrong_letters):
-    print(f"trys left: {cnt}, {reconnect_list_to_string(hiden_split_word)} , words used {wrong_letters} ")
+    print(f"trys left: {cnt}, {reconnect_list_to_string(hiden_split_word)} , words used: {", ".join(wrong_letters)} ")
 
 def get_letter(wrong_letters, hiden_list):
     user_letter= input("please enter a letter: ")
-    if user_letter.isalpha() and (len(user_letter) == 1) and (user_letter not in wrong_letters) and user_letter not in  hiden_list:
-        return user_letter
-    else:
-        (print("bad input"))
-        update_wrong_letters_list(user_letter, wrong_letters)
-        get_letter(wrong_letters, hiden_list)
 
+    if not (user_letter.isalpha() and (len(user_letter) == 1) and (user_letter not in wrong_letters)) or user_letter  in  hiden_list:
+        (print("bad input"))
+        update_wrong_letters_list(user_letter, wrong_letters,hiden_list)
+        return get_letter(wrong_letters, hiden_list)
+    return user_letter
 
 
 def check_gues(letter,word,):
@@ -44,15 +43,17 @@ def update_hiden_list(letter,word,lst):
             lst[index]=letter
     return lst
 
-def update_wrong_letters_list(letter,lst):
-    return lst.append(letter)
+def update_wrong_letters_list(letter,wrong_list,hiden_list ):
+    if (letter not in hiden_list)  and len(letter) == 1:
+         wrong_list.add(letter)
+    return wrong_list
 
 def update_lists(letter,word,hiden_list,wrong_letters_list):
     is_good_gues=check_gues(letter,word)
     if is_good_gues:
          update_hiden_list(letter,word,hiden_list)
     else:
-        update_wrong_letters_list(letter,wrong_letters_list)
+        update_wrong_letters_list(letter,wrong_letters_list,hiden_list)
     return
 
 
@@ -61,7 +62,7 @@ def main():
     word_list = ['wert', 'qwertyh','wertgv']
     word=choose_game_word_from_list(word_list)
     hiden_letters_list=hiden_word_in_list(word)
-    wrong_letters=[]
+    wrong_letters=set()
 
 
 
