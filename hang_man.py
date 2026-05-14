@@ -1,3 +1,4 @@
+
 import random
 
 
@@ -22,10 +23,15 @@ def reconnect_list_to_string(letter_list):
     return reconnected
 
 def show_game_status(cnt,hidden_split_word,wrong_letters):
-    print(f"tris left: {cnt}, {reconnect_list_to_string(hidden_split_word)} , words used: {", ".join(wrong_letters)} ")
+    print(f"tris left: {cnt}, {reconnect_list_to_string(hidden_split_word)} , words used: {', '.join(wrong_letters)} ")
     return
 
 def get_letter(wrong_letters, hidden_list):
+    """
+        Gets a valid letter from the user
+
+        Rejects non alpha input more than one char letters already guessed
+        """
     user_letter= input("please enter a letter: ")
 
     if  not input_is_valid(user_letter) or (user_letter  in wrong_letters) :
@@ -41,6 +47,7 @@ def check_gues(letter,word,):
     return letter in list(word)
 
 def update_hidden_list(letter,word,lst):
+        #shows all matching letters in the hidden word list
     for index, l in enumerate(word) :
         if letter == l:
             lst[index]=letter
@@ -52,6 +59,11 @@ def update_wrong_letters_list(letter,wrong_list,hidden_list ):
     return wrong_list
 
 def update_lists(letter,word,hidden_list,wrong_letters_list):
+    """
+        Updates the game after a user guess
+        shows letters in the hidden word if the guess is correct
+        else adds the letter to the wrong guesses list
+        """
     is_good_gues=check_gues(letter,word)
     if is_good_gues:
          update_hidden_list(letter,word,hidden_list)
@@ -70,6 +82,9 @@ def game_end(hidden_words,word ,tris):
     return
 
 def hang_man():
+    """
+     end game message based on win or loss state
+    """
     print("   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n | |   |\n | |   |\n_______|")
     return
 
