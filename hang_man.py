@@ -27,12 +27,14 @@ def show_game_status(cnt,hidden_split_word,wrong_letters):
 def get_letter(wrong_letters, hidden_list):
     user_letter= input("please enter a letter: ")
 
-    if not (user_letter.isalpha() and (len(user_letter) == 1) and (user_letter not in wrong_letters)) or user_letter  in  hidden_list:
-        (print("bad input"))
+    if  not input_is_valid(user_letter) or (user_letter  in wrong_letters) :
+        print("bad input")
         update_wrong_letters_list(user_letter, wrong_letters,hidden_list)
         return get_letter(wrong_letters, hidden_list)
     return user_letter
 
+def input_is_valid(letter):
+    return  letter.isalpha() and (len(letter) == 1)
 
 def check_gues(letter,word,):
     return letter in list(word)
@@ -44,7 +46,7 @@ def update_hidden_list(letter,word,lst):
     return lst
 
 def update_wrong_letters_list(letter,wrong_list,hidden_list ):
-    if (letter not in hidden_list)  and len(letter) == 1:
+    if (letter not in hidden_list)  and input_is_valid(letter):
          wrong_list.add(letter)
     return wrong_list
 
