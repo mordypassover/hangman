@@ -23,6 +23,7 @@ def reconnect_list_to_string(letter_list):
 
 def show_game_status(cnt,hidden_split_word,wrong_letters):
     print(f"tris left: {cnt}, {reconnect_list_to_string(hidden_split_word)} , words used: {", ".join(wrong_letters)} ")
+    return
 
 def get_letter(wrong_letters, hidden_list):
     user_letter= input("please enter a letter: ")
@@ -65,9 +66,12 @@ def game_end(hidden_words,word ,tris):
     if hidden_words == list(word):
         print(f"congratulations! word:{word} you won with {tris} left!")
     else:
-        print("you loose!")
+        print(f"you loose!  word:{word}")
+    return
 
-
+def hang_man():
+    print("   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n | |   |\n | |   |\n_______|")
+    return
 
 def main():
     TRY_CNT = 10
@@ -76,7 +80,7 @@ def main():
     hidden_letters_list=hidden_word_in_list(word)
     wrong_letters=set()
 
-
+    hang_man()
 
     while TRY_CNT > 0 and "_"  in hidden_letters_list:
         show_game_status(TRY_CNT, hidden_letters_list,wrong_letters)
