@@ -56,6 +56,13 @@ def update_lists(letter,word,hiden_list,wrong_letters_list):
         update_wrong_letters_list(letter,wrong_letters_list,hiden_list)
     return
 
+def game_end(hidenw_ordes,word ,trys):
+    if hidenw_ordes == list(word):
+        print(f"congratulations! you won with {trys} left!")
+    else:
+        print("you loose!")
+
+
 
 def main():
     TRY_CNT = 10
@@ -72,4 +79,6 @@ def main():
 
         update_lists(user_letter,word,hiden_letters_list,wrong_letters)
         TRY_CNT-=1
-main()
+
+    show_game_status(TRY_CNT, hiden_letters_list,wrong_letters)
+    game_end(hiden_letters_list, word,TRY_CNT)
