@@ -28,6 +28,7 @@ def reconnect_list_to_string(letter_list):
 
 
 def show_game_status(cnt,hidden_split_word,wrong_letters):
+    hang_man(cnt)
     print(f"tris left: {cnt}, {reconnect_list_to_string(hidden_split_word)}, words used: {', '.join(wrong_letters)} ")
     return
 
@@ -95,11 +96,21 @@ def game_end(hidden_words,word ,tris):
     return
 
 
-def hang_man():
-    """
-     end game message based on win or loss state
-    """
-    print("   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n | |   |\n | |   |\n_______|")
+def hang_man(try_num):
+    print_dict={
+        0 : "   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n | |   |\n | |   |\n_______|",
+        1 : "   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n | |   |\n |     |\n_______|",
+        2 : "   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n |     |\n       |\n_______|",
+        3 : "   _____\n  |    |\n  O    |\n /|\\   |\n/ ^ \\  |\n       |\n       |\n_______|",
+        4 : "   _____\n  |    |\n  O    |\n /|\\   |\n/ ^    |\n       |\n       |\n_______|",
+        5 : "   _____\n  |    |\n  O    |\n /|\\   |\n/      |\n       |\n       |\n_______|",
+        6 : "   _____\n  |    |\n  O    |\n /|\\   |\n       |\n       |\n       |\n_______|",
+        7 : "   _____\n  |    |\n  O    |\n /|    |\n       |\n       |\n       |\n_______|",
+        8 : "   _____\n  |    |\n  O    |\n /     |\n       |\n       |\n       |\n_______|",
+        9 : "   _____\n  |    |\n  O    |\n       |\n       |\n       |\n       |\n_______|",
+        10: "   _____\n  |    |\n       |\n       |\n       |\n       |\n       |\n_______|"
+}
+    print(print_dict[try_num])
     return
 
 
@@ -110,7 +121,6 @@ def main():
     hidden_letters_list=hidden_word_in_list(word)
     wrong_letters=set()
 
-    hang_man()
 
     while TRY_CNT > 0 and "_"  in hidden_letters_list:
         show_game_status(TRY_CNT, hidden_letters_list,wrong_letters)
