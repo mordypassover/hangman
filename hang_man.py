@@ -89,6 +89,9 @@ def try_cnt_suber(cnt,letter, word):
 
 
 def game_end(hidden_words,word ,tris):
+    """
+         end game message based on win or loss
+        """
     if hidden_words == list(word):
         print(f"congratulations! word:{word} you won with {tris} left!")
     else:
