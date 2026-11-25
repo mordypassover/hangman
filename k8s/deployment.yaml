@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: hangman
+  namespace: hangman
 
 spec:
   replicas: 1
@@ -19,6 +20,6 @@ spec:
     spec:
       containers:
         - name: hangman
-          image: YOUR_USERNAME/hangman:v1
+          image: mordypassover/hangman:v1
           stdin: true
           tty: true
