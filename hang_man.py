@@ -1,5 +1,6 @@
-
+import requests
 import random
+import json
 
 
 def choose_game_word_from_list(lst):
@@ -119,7 +120,13 @@ def hang_man(try_num):
 
 def main():
     TRY_CNT = 10
-    word_list = ['memory', 'ynet','ever']
+    response = requests.get(
+        "https://random-word-api.herokuapp.com/word?number=500&diff=1",
+        timeout=30
+    )
+
+    response.raise_for_status()
+    word_list = response.json()
     word=choose_game_word_from_list(word_list)
     hidden_letters_list=hidden_word_in_list(word)
     wrong_letters=set()

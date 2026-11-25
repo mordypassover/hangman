@@ -1,0 +1,6 @@
+services:
+  hangman:
+    build: .
+    container_name: hangman
+    stdin_open: true
+    tty: true

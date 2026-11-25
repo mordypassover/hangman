@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hangman
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: hangman
+
+  template:
+    metadata:
+      labels:
+        app: hangman
+
+    spec:
+      containers:
+        - name: hangman
+          image: YOUR_USERNAME/hangman:v1
+          stdin: true
+          tty: true
